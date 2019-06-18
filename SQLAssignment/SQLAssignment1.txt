@@ -1,0 +1,71 @@
+1. BeforeUpdate Trigger
+
+delimiter //
+create trigger trigger_update_emp
+before update on emp
+for each row
+begin
+insert into emp_audit(empId,empName,location,action,changeDate) values(old.empId,old.empName,old.location,'updated',now());
+end//
+delimiter ;
+
+2.BeforeInsert Trigger
+
+delimiter //
+create trigger trigger_before_insert_emp
+before insert on emp
+for each row
+begin
+insert into emp_audit values(new.empId,new.empName,new.location,'Inserted',now());
+end//
+delimiter ;
+
+
+3.BeforeDelete Trigger
+
+delimiter //
+create trigger trigger_before_delete_emp
+before delete on emp
+for each row
+begin
+insert into emp_audit(empId,empName,location,action,changeDate) values(old.empId,old.empName,old.location,'Deleted',now());
+end//
+delimiter ;
+
+
+4.AfterUpdate Trigger
+
+delimiter //
+create trigger trigger_after_update_emp
+after update on emp
+for each row
+begin
+insert into emp_audit(empId,empName,location,action,changeDate) values(new.empId,new.empName,new.location,'updated',now());
+end//
+delimiter ;
+
+
+5. AfterInsert Trigger
+
+delimiter //
+create trigger trigger_after_insert_emp
+after insert on emp
+for each row
+begin
+insert into emp_audit values(new.empId,new.empName,new.location,'Insert',now());
+
+end//
+delimiter ;
+
+
+6. AfterDelete Trigger
+
+delimiter //
+create trigger trigger_after_delete_emp
+after delete on emp
+for each row
+begin
+insert into emp_audit(empId,empName,location,action,changeDate) values(old.empId,old.empName,old.location,'Delete',now());
+
+end//
+delimiter ;
