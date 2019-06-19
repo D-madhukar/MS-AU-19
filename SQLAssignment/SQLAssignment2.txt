@@ -99,11 +99,11 @@ declare isAvailable int default -1;
 declare showId default -1;
 declare defaultPrice int default 100;
 select show_id from show where tid = tid and show.movie_id = movie_id and show_date=required_date and tickets >= no_tickets into showId;
-if show_id!=-1 then
+if showId!=-1 then
 INSERT INTO ticket(`show_id`,`tid`,`seat_no`,`price`) VALUES(showId,tid,no_tickets,defaultPrice)
 INSERT INTO booking_details(`booking_date`,`customer_id`,`ticket_id`)
 VALUES(now(),customer_id,showId);
-update movie_ticket_booking.shows set tickets = tickets - no_tickets where show_id = show_id_new;
+update show set tickets = tickets - no_tickets where show_id = showId;
 end if;
 end //
 delimiter ;
@@ -111,7 +111,7 @@ delimiter ;
 7) Procedure to get the Booking details
 
 delimiter //
-create procedure Get_Booking_Details(in customer_id int,in booking_id int)
+create procedure GetBookingDetails(in customer_id int,in booking_id int)
 begin
 select * from booking_details as bd where bd.customer_id = customer_id and booking_id = booking_id_new;
 end //
