@@ -42,5 +42,5 @@ do
 	echo  "Expiry Date: $eDate" >> "$path"
 	echo  "Billing Date: $bDate " >> "$path"
 	echo  "Card PIN: $pin" >> "$path"
-	echo  "Credit Limit: $$output" >> "$path"
+	echo  "Credit Limit: $ $output" >> "$path"
 done < cs.csv
