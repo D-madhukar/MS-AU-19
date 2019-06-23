@@ -1,0 +1,15 @@
+.container-fluid{
+    margin-top: 50px;
+}
+.card-img-top {
+    height: auto;
+    max-height: 200px;
+}
+.keyClass {
+    color: #18555C;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.valueClass {
+    color: #18555C;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}

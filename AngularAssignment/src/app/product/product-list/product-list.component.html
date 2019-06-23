@@ -1,0 +1,25 @@
+
+<div class="container-fluid">
+  <h2 class="heading"> Product-List</h2>
+  <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th *ngFor="let key of keys" scope="col">{{key}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let product of products">
+                <td *ngFor="let key of keys" scope="row">
+                  <a *ngIf="key == keys[0];else elseBlock" routerLink="{{product[key]}}" class="nav-link">{{product[key]}}</a>
+                  <ng-template #elseBlock><p class="valueClass">{{product[key]}}</p></ng-template>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    <div class="col-sm-1"></div>
+  </div>
+</div>
