@@ -1,4 +1,4 @@
-NOW=$(date +"%Y%m"	)
+NOW=$(date +"%m%Y"	)
 OLDIFS=$IFS
 IFS=","
 echo $NOW
