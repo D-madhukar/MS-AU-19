@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+        <div class="card">
+            <!-- <img class="card-img-top" src="https://www.incimages.com/uploaded_files/image/970x450/products_364475.jpg" alt="Card image cap"> -->
+            <h5 class="card-header">Product{{selectedId}}-Details</h5>
+            <div class="card-body">
+              <table class="table">
+                  <tbody>
+                      <tr *ngFor="let key of keys">
+                          <td class="keyClass">{{key}}</td>
+                          <td>:</td>
+                          <td class="valueClass">{{product[key]}}</td>
+                      </tr>
+                  </tbody>
+                </table>
+            <a routerLink="/product" class="btn btn-outline-info">Go Back</a>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

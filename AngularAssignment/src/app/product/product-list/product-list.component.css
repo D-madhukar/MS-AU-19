@@ -1,0 +1,10 @@
+.container-fluid {
+    margin-top: 50px;
+}
+.heading{
+    text-align: center;
+}
+.valueClass {
+        color: #18555C;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}

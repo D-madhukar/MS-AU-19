@@ -1,0 +1,118 @@
+1) Table Theatre
+
+CREATE TABLE theatre (
+tid int primary key,
+theatreName varchar(30),
+location varchar(20),
+);
+
+Sample Insert: 
+
+INSERT INTO theatre(`tid`,`theatreName`,`location`)
+VALUES(1,'CityPride','Bangalore',2,400);
+
+2) Table Movie
+
+CREATE TABLE movie (
+movie_id int primary key,
+movie_name varchar(30),
+release_date date,
+rating numeric(1)
+);
+
+Sample Insert: 
+
+INSERT INTO movie(`movie_id`,`movie_name`,`release_date`,rating)
+VALUES(1,'Alladin','14-06-2019',7);
+
+3)Table Ticket
+
+CREATE TABLE ticket(
+ticket_id int primary key,
+show_id int ,
+tid int,
+seat_no int,
+price numeric(7,2),
+foreign key (show_id) references show(show_id),
+foreign key (tid) references theatre(tid)
+);
+
+4) Table Customer
+
+CREATE TABLE customer (
+customer_id int primary key,
+customer_name varchar(30),
+email varchar(50),
+phone_number numeric(12),
+email_id varchar(50),
+location varchar(100)
+);
+
+Sample Insert:
+
+INSERT INTO customer(`customer_id`,`customer_name`,`email`,`phone_number,`location`)
+VALUES(1,'Madhu','sample@gmail.com',8735753995,'hyderabad');
+
+
+5) Table Show
+
+CREATE TABLEshow (
+show_id int primary key,
+show_time date,
+duration int,
+tid int,
+movie_id int,
+tickets int.
+foreign key (movie_id) references movie(movie_id),
+foreign key (tid) references theatre(tid)
+);
+
+Sample Insert:
+
+INSERT INTO show(`show_id`,`show_time`,`duration`,`tid`,`movie_id`,`tickets`)
+VALUES(143,'17-07-2019',150,1,1,15,260);
+
+
+6) Table Booking_Details
+
+CREATE TABLEbooking_details (
+booking_id int primary key,
+booking_date date,
+customer_id int,
+ticket_id int ,
+foreign key (customer_id) references customer(customer_id),
+foreign key (ticket_id) references ticket(ticket_id)
+);
+
+Sample Insert:
+
+INSERT INTO booking_details(`booking_id`,`booking_date`,`customer_id`,`ticket_id`)
+VALUES(1,`12-09-2019`,1,1);
+
+
+6) Procedure to Book Ticket
+
+delimiter /
+create procedure BookNewTicket(in tid int,in customer_id int,in required_date date,in movie_id int,in no_tickets int)
+begin
+declare isAvailable int default -1;
+declare showId default -1;
+declare defaultPrice int default 100;
+select show_id from show where tid = tid and show.movie_id = movie_id and show_date=required_date and tickets >= no_tickets into showId;
+if showId!=-1 then
+INSERT INTO ticket(`show_id`,`tid`,`seat_no`,`price`) VALUES(showId,tid,no_tickets,defaultPrice)
+INSERT INTO booking_details(`booking_date`,`customer_id`,`ticket_id`)
+VALUES(now(),customer_id,showId);
+update show set tickets = tickets - no_tickets where show_id = showId;
+end if;
+end //
+delimiter ;
+
+7) Procedure to get the Booking details
+
+delimiter //
+create procedure GetBookingDetails(in customer_id int,in booking_id int)
+begin
+select * from booking_details as bd where bd.customer_id = customer_id and booking_id = booking_id_new;
+end //
+delimiter ;
